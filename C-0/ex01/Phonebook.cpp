@@ -10,8 +10,14 @@ Phonebook::~Phonebook(){
 }
 
 void Phonebook::addContact(void){
+    static int maxedout = 0;
     if (count == max)
-        this->contacts[0].updateContact();
+    {
+        this->contacts[maxedout].updateContact();
+        maxedout++;
+        if (maxedout == 8)
+            maxedout = 0;
+    }
     else
     {
         this->contacts[count].updateContact();
@@ -21,17 +27,19 @@ void Phonebook::addContact(void){
 
 
 void Phonebook::searchContact(void){
+    int display_index = 1;
     int index = 0;
     std::cout << "All contacts:" << std::endl;
-    while (index < 8)
+    while (index < 8 && display_index < 9)
     {
         std::string line;
-        std::cout << std::setw(10) << index << "|";
+        std::cout << std::setw(10) << display_index << "|";
         std::cout << std::setw(10) << contacts[index].getfirstname() << "|";
         std::cout << std::setw(10) << contacts[index].getlastname() << "|";
         std::cout << std::setw(10) << contacts[index].getnickname() << "|";
         std::cout << std::endl;
         index++;
+        display_index++;
     }
 }
 
