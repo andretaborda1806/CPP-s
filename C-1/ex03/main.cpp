@@ -13,8 +13,8 @@ int main(void){
     {
         Weapon club = Weapon("giant stick");
         HumanB jim = HumanB("Jim");
-        jim.setWeapon(club);
         jim.attack();
+        jim.setWeapon(club);
         club.setType("normal stick");
         jim.attack();
     }
