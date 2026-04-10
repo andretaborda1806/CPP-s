@@ -6,7 +6,7 @@
 /*   By: antabord <antabord@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 18:01:02 by antabord          #+#    #+#             */
-/*   Updated: 2026/02/26 18:01:03 by antabord         ###   ########.fr       */
+/*   Updated: 2026/04/10 14:41:32 by antabord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int main(void)
     {
         std::string line;
         getline(std::cin, line);
-        if (line == "add")
+        if (line == "ADD")
             phone.addContact();
-        if (line == "search")
+        if (line == "SEARCH")
             phone.searchContact();
-        if (line == "exit")
+        if (line == "EXIT")
             break;
     }
 }

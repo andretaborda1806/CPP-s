@@ -6,7 +6,7 @@
 /*   By: antabord <antabord@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 18:01:07 by antabord          #+#    #+#             */
-/*   Updated: 2026/02/26 18:01:08 by antabord         ###   ########.fr       */
+/*   Updated: 2026/04/10 14:42:00 by antabord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Phonebook::Phonebook(): contacts(), max(8) , count(0)
 {
     std::cout << "Phonebook construido" << std::endl;
+    std::cout << "  Use the following commands: ADD, SEARCH or EXIT" << std::endl;
 }
 
 Phonebook::~Phonebook(){
