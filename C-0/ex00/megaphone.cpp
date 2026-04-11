@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: antabord <antabord@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 18:01:24 by antabord          #+#    #+#             */
-/*   Updated: 2026/02/26 18:01:25 by antabord         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <iostream>
 #include <cctype>
 
@@ -22,6 +10,5 @@ int main(int argc, char **argv)
         for (int j = 0; argv[i][j]; j++)
             std::cout << static_cast<char>(toupper(static_cast<unsigned char>(argv[i][j])));
     }
-    std::cout << std::endl;
     return 0;
 }
