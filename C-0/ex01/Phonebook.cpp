@@ -15,7 +15,6 @@
 Phonebook::Phonebook(): contacts(), max(8) , count(0)
 {
     std::cout << "Phonebook construido" << std::endl;
-    std::cout << "  Use the following commands: ADD, SEARCH or EXIT" << std::endl;
 }
 
 Phonebook::~Phonebook(){
@@ -26,33 +25,43 @@ void Phonebook::addContact(void){
     static int maxedout = 0;
     if (count == max)
     {
-        this->contacts[maxedout].updateContact();
-        maxedout++;
-        if (maxedout == 8)
-            maxedout = 0;
+        if (this->contacts[maxedout].updateContact()){
+            maxedout++;
+            if (maxedout == 8)
+                maxedout = 0;
+        }
     }
     else
     {
-        this->contacts[count].updateContact();
-        count++;
+        if (this->contacts[count].updateContact())
+            count++;
     }
 }
 
 
-void Phonebook::searchContact(void){
-    int display_index = 1;
-    int index = 0;
-    std::cout << "All contacts:" << std::endl;
-    while (index < 8 && display_index < 9)
+bool Phonebook::searchContact(long index){
+    if (index >= 1 && index <= count)
     {
-        std::string line;
-        std::cout << std::setw(10) << display_index << "|";
-        std::cout << std::setw(10) << contacts[index].getfirstname() << "|";
-        std::cout << std::setw(10) << contacts[index].getlastname() << "|";
-        std::cout << std::setw(10) << contacts[index].getnickname() << "|";
-        std::cout << std::endl;
-        index++;
-        display_index++;
+        long i = index - 1;
+        std::cout << "FirstName: " << contacts[i].getfirstname(false) << std::endl;
+        std::cout << "LastName: " << contacts[i].getlastname(false) << std::endl;
+        std::cout << "NickName: " << contacts[i].getnickname(false) << std::endl;
+        std::cout << "Number: " << contacts[i].getnumber() << std::endl;
+        std::cout << "Darksecret: " << contacts[i].getdarksecret() << std::endl;
+        return true;
+
     }
+    else if (index == 0){
+        long i = 0;
+        while (i < count){
+        std::cout << std::setw(10) << (i + 1) << "|";
+        std::cout << std::setw(10) << contacts[i].getfirstname(true) << "|";
+        std::cout << std::setw(10) << contacts[i].getlastname(true) << "|";
+        std::cout << std::setw(10) << contacts[i].getnickname(true) << "|" << std::endl;
+        i++;
+        }
+        return true;
+    }
+    return false;
 }
 

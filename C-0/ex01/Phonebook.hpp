@@ -10,27 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
-#include <cctype>
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
-
-class Contacts
-{
-    private:
-        std::string firstname;
-        std::string lastname;
-        std::string nickname;
-        std::string darksecret;
-        std::string number;
-    public:
-        Contacts();
-        ~Contacts();
-        void updateContact();
-        std::string getfirstname();
-        std::string getlastname();
-        std::string getnickname();
-};
+#include "Contacts.hpp"
 
 class Phonebook
 {
@@ -42,6 +25,7 @@ class Phonebook
         Phonebook();
         ~Phonebook();
         void addContact();
-        void replaceContact();
-        void searchContact();
+        bool searchContact(long index);
 };
+
+#endif
