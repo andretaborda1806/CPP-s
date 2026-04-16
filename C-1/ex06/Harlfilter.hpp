@@ -2,6 +2,7 @@
 #define HARLFILTER_HPP
 
 #include <iostream>
+#include <cstdlib>
 
 class Harlfilter{
     public:
