@@ -7,7 +7,7 @@
 int main()
 {
     Animal *animals[10];
-    Animal animal;
+    Animal animal; /*impossivel instanciar objeto*/
     std::string dogBrain[100];
     std::string catBrain[100];
 
