@@ -17,7 +17,7 @@ static bool     parser(char **argv, std::ifstream& infile ){
         std::cerr << "ERROR Nothing to replace!" << std::endl;
         return false;
     }
-    for (int i = 0; i < name.length(); i++){
+    for (std::string::size_type i = 0; i < name.length(); i++){
         if (!isprint(static_cast <unsigned char> (name[i]))){
             std::cerr << "ERROR File name cant have non printable chars!" << std::endl;
             return false; 
@@ -39,8 +39,8 @@ int main(int argc, char **argv)
     std::ifstream infile;
     if (!parser(argv, infile))
         return 1;
-    std::string outname = (std::string (argv[1]) + ".replace");
-    std::ofstream outfile(outname);
+    std::string outname = (std::string(argv[1]) + ".replace");
+    std::ofstream outfile(outname.c_str());
     if (outfile.fail()){
         std::cerr << "ERROR Cant create outfile!" << std::endl;
         return 1;
