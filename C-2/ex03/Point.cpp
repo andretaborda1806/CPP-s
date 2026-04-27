@@ -12,7 +12,7 @@ Point::Point(Point const &copy): x(copy.x), y(copy.y){
 Point::~Point(){
 }
 
-Point &Point::operator=(const Point copy){
+Point &Point::operator=(const Point &copy){
     (void)copy;
     return *this;
 }

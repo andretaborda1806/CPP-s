@@ -22,7 +22,7 @@ Fixed::~Fixed(){
     std::cout << "Destructor called" << std::endl;
 }
 
-Fixed &Fixed::operator=(const Fixed copy){
+Fixed &Fixed::operator=(const Fixed &copy){
     std::cout << "Copy assignment operator called" << std::endl;
     this->_fixedValue = copy._fixedValue;
     return (*this);

@@ -1,13 +1,11 @@
 #include "Fixed.hpp"
 
-static const int    _bits = 8;
 
 Fixed::Fixed(void): _fixedpointvalue(0){
     std::cout<< "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed const &copy): _fixedpointvalue(0){
-    (void)&copy;
+Fixed::Fixed(Fixed const &copy): _fixedpointvalue(copy._fixedpointvalue){
     std::cout << "Copy constructor called" << std::endl;
 }
 
@@ -15,7 +13,7 @@ Fixed::~Fixed(){
     std::cout << "Destructor called" << std::endl;
 }
 
-Fixed &Fixed::operator=(const Fixed copy) {
+Fixed &Fixed::operator=(const Fixed &copy) {
     this->setRawBits(copy.getRawBits());
     return (*this);
 }

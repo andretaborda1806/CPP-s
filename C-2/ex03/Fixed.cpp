@@ -98,7 +98,7 @@ Fixed Fixed::operator-(const Fixed &copy) const{
     return (result);
 }
 
-Fixed &Fixed::operator=(Fixed copy){
+Fixed &Fixed::operator=(const Fixed &copy){
     _fixedValue = copy._fixedValue;
     return (*this);
 }

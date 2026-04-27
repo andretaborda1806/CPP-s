@@ -32,7 +32,7 @@ class Fixed {
         Fixed operator-(const Fixed &copy) const;
         Fixed operator*(const Fixed &copy) const;
         Fixed operator/(const Fixed &copy) const;
-        Fixed &operator=(const Fixed copy);
+        Fixed &operator=(const Fixed &copy);
         
         
         /*member functions*/

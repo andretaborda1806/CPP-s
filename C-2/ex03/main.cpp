@@ -1,9 +1,9 @@
 #include "Point.hpp"
 
 int main(void){
-    Point a(1, 1);
-    Point b(5, 5);
-    Point c(6, 10);
+    Point a(0, 100);
+    Point b(100, 0);
+    Point c(0, 0);
     Point point(0, 0);
 
     switch (bsp(a, b, c, point))
