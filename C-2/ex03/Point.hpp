@@ -10,11 +10,10 @@ class Point {
         Point();
         Point(const float x, const float y);
         Point(Point const &copy);
-        Point &operator=(const Point &copy);
         ~Point();
         int getX() const;
         int getY() const;
-        private:
+    private:
         const Fixed x;
         const Fixed y;
 };

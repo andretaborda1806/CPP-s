@@ -4,7 +4,7 @@ int main(void){
     Point a(0, 100);
     Point b(100, 0);
     Point c(0, 0);
-    Point point(0, 0);
+    Point point(50, 49);
 
     switch (bsp(a, b, c, point))
     {

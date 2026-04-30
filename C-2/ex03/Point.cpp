@@ -12,17 +12,13 @@ Point::Point(Point const &copy): x(copy.x), y(copy.y){
 Point::~Point(){
 }
 
-Point &Point::operator=(const Point &copy){
-    (void)copy;
-    return *this;
-}
 
 int Point::getX() const{
-    return x.getRawBits();
+    return this->x.getFixedValue();
 }
 
 int Point::getY() const{
-    return y.getRawBits();
+    return this->y.getFixedValue();
 }
 
 bool bsp( Point const a, Point const b, Point const c, Point const point){
