@@ -12,7 +12,7 @@ class AMateria
         AMateria();
         AMateria(const AMateria &copy);
         AMateria(std::string const & type);
-        ~AMateria();
+        virtual ~AMateria();
         AMateria &operator=(const AMateria &copy);
         std::string const & getType() const; //Returns the materia type
         virtual AMateria* clone() const = 0;

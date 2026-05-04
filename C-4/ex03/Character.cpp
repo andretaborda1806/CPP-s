@@ -1,47 +1,70 @@
 #include "Character.hpp"
 
-Character::Character():_name(""), _inventory{}, _onThefloor{}{}
+Character::Character(): _name(""){
+    for (int i = 0; i < 4; ++i) _inventory[i] = NULL;
+    for (int i = 0; i < 100; ++i) _onThefloor[i] = NULL;
+}
 
-Character::Character(std::string name): _name(name), _inventory{}, _onThefloor{}{
+Character::Character(std::string name): _name(name){
+    for (int i = 0; i < 4; ++i) _inventory[i] = NULL;
+    for (int i = 0; i < 100; ++i) _onThefloor[i] = NULL;
     std::cout << _name << " foi criado" << std::endl;
 }
 
-Character::Character(const Character &copy): _name(copy.getName()), _inventory{}, _onThefloor{}{
-    for (int i = 0; i < 4; i++)
-    {
-        if (_inventory[i]){
-            delete (_inventory[i]);
-            _inventory[i] = NULL;
-        }
-        _inventory[i] = copy._inventory[i]->clone();
+Character::Character(const Character &copy): _name(copy.getName()){
+    for (int i = 0; i < 4; ++i) _inventory[i] = NULL;
+    for (int i = 0; i < 100; ++i) _onThefloor[i] = NULL;
+    for (int i = 0; i < 4; ++i){
+        if (copy._inventory[i])
+            _inventory[i] = copy._inventory[i]->clone();
+    }
+    for (int i = 0; i < 100; ++i){
+        if (copy._onThefloor[i])
+            _onThefloor[i] = copy._onThefloor[i]->clone();
     }
 }
 
 Character::~Character(){
-    for (int i = 0; i < 4;i++){
-        if (_inventory[i])
-            delete(_inventory[i]);
+    for (int i = 0; i < 4; ++i){
+        if (_inventory[i]){
+            delete _inventory[i];
+            _inventory[i] = NULL;
+        }
+    }
+    for (int i = 0; i < 100; ++i){
+        if (_onThefloor[i]){
+            delete _onThefloor[i];
+            _onThefloor[i] = NULL;
+        }
     }
 }
 
 Character &Character::operator=(const Character &copy){
-    if (&copy != this)
-    {
+    if (&copy != this){
         _name = copy.getName();
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; ++i){
             if (_inventory[i]){
-                delete (_inventory[i]);
+                delete _inventory[i];
                 _inventory[i] = NULL;
             }
-
         }
-        for (int i = 0; i < 4; i++)
-            _inventory[i] = copy._inventory[i]->clone();
-        for (int i = 0; i < 100; i++){
+        for (int i = 0; i < 4; ++i){
+            if (copy._inventory[i])
+                _inventory[i] = copy._inventory[i]->clone();
+            else
+                _inventory[i] = NULL;
+        }
+        for (int i = 0; i < 100; ++i){
             if (_onThefloor[i]){
                 delete _onThefloor[i];
                 _onThefloor[i] = NULL;
             }
+        }
+        for (int i = 0; i < 100; ++i){
+            if (copy._onThefloor[i])
+                _onThefloor[i] = copy._onThefloor[i]->clone();
+            else
+                _onThefloor[i] = NULL;
         }
     }
     return *this;
@@ -52,33 +75,36 @@ std::string const &Character::getName()const{
 }
 
 void Character::equip(AMateria *m){
-    for (int i = 0; i < 4; i++){
+    if (!m)
+        return;
+    for (int i = 0; i < 4; ++i){
         if (!_inventory[i]){
             _inventory[i] = m;
+            std::cout << this->getName() << " equiped " << m->getType() << std::endl;
             return;
         }
     }
-    std::cout << "Cant equip " << m->getType() << " beacause the inventory is full" << std::endl;
 }
 
-void Character::unequip(int idx)
-{
-    if (idx > 4)
-        std::cout << "My pockets aint that deep fam" << std::endl;
+void Character::unequip(int idx){
+    if (idx < 0 || idx >= 4)
+        return;
     if (!_inventory[idx])
-        std::cout << "inventory slot is already empty" << std::endl;
-    else{
-        std::cout << this->getName() << " droped " << this->_inventory[idx]->getType() << " on the floor" << std::endl;
-        for (int i = 0; i < 100; i++)
-        {
-            if (_onThefloor[i]){
-                _onThefloor[i] = _inventory[i];
-                _inventory[i] = NULL;
-            }
+        return;
+    for (int i = 0; i < 100; ++i){
+        if (!_onThefloor[i]){
+            _onThefloor[i] = _inventory[idx];
+            std::cout << this->getName() << " droped " << _inventory[idx]->getType() << " on the floor" << std::endl;
+            _inventory[idx] = NULL;
+            return;
         }
     }
 }
 
-void    Character::use(int idx, ICharacter &target){
-    /*tomorrow*/
+void Character::use(int idx, ICharacter &target){
+    if (idx < 0 || idx >= 4)
+        return;
+    if (!_inventory[idx])
+        return;
+    _inventory[idx]->use(target);
 }

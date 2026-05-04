@@ -74,7 +74,7 @@ bool Fixed::operator<=(const Fixed &copy) const{
 
 Fixed Fixed::operator*(const Fixed &copy) const{
     Fixed result;
-    result.setRawBits((this->_fixedValue * copy._fixedValue) >> _fractBits);
+    result.setFixedValue((this->_fixedValue * copy._fixedValue) >> _fractBits);
     return (result);
 }
 
@@ -82,24 +82,25 @@ Fixed Fixed::operator/(const Fixed &copy) const{
     if (copy._fixedValue == 0)
         throw std::runtime_error("Division by zero");
     Fixed result;
-    result.setRawBits((this->_fixedValue << _fractBits) / copy._fixedValue);
+    result.setFixedValue((this->_fixedValue << _fractBits) / copy._fixedValue);
     return (result);
 }
 
 Fixed Fixed::operator+(const Fixed &copy) const{
     Fixed result;
-    result.setRawBits(this->_fixedValue + copy._fixedValue);
+    result.setFixedValue(this->_fixedValue + copy._fixedValue);
     return (result);
 }
 
 Fixed Fixed::operator-(const Fixed &copy) const{
     Fixed result;
-    result.setRawBits(this->_fixedValue - copy._fixedValue);
+    result.setFixedValue(this->_fixedValue - copy._fixedValue);
     return (result);
 }
 
 Fixed &Fixed::operator=(const Fixed &copy){
-    _fixedValue = copy._fixedValue;
+    if (this != &copy)
+        this->setFixedValue(copy.getFixedValue());
     return (*this);
 }
 
@@ -145,11 +146,11 @@ float Fixed::toFloat(void) const {
     return ((float)_fixedValue / (1 << _fractBits));
 }
 
-void    Fixed::setRawBits(const int rawbits){
+void    Fixed::setFixedValue(const int rawbits){
     _fixedValue = rawbits;
 }
 
-int     Fixed::getRawBits() const {
+int     Fixed::getFixedValue() const {
     return (_fixedValue);
 }
 

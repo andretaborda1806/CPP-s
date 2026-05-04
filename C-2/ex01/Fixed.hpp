@@ -12,8 +12,8 @@ class Fixed {
         Fixed(const float f);
         ~Fixed();
         Fixed &operator=(const Fixed &copy);
-        int     getRawBits(void) const;
-        void    setRawBits(const int raw);
+        int     getFixedValue(void) const;
+        void    setFixedValue(const int raw);
         float toFloat( void ) const;
         int toInt( void ) const;
     private:
