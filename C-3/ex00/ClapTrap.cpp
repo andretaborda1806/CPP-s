@@ -79,11 +79,11 @@ int ClapTrap::getAttackDmg()const{
 }
 
 int ClapTrap::checker() const{
-    if (getEnergyPts() && getHitPts())
+    if (getEnergyPts() > 0 && getHitPts() > 0)
         return 0;
-    else if (getEnergyPts() <= 0 && getHitPts())
+    else if (getEnergyPts() <= 0 && getHitPts() > 0)
         return 1;
-    else if (getHitPts() <= 0 && getEnergyPts())
+    else if (getHitPts() <= 0 && getEnergyPts() > 0)
         return 2;
-    return 0;
+    return 1;
 }

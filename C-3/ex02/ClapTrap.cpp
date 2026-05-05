@@ -1,8 +1,8 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap():HitPts(100), EnergyPts(50), AttackDmg(20){}
+ClapTrap::ClapTrap():HitPts(100), EnergyPts(100), AttackDmg(30){}
 
-ClapTrap::ClapTrap(std::string name): name(name), HitPts(100), EnergyPts(50), AttackDmg(20){
+ClapTrap::ClapTrap(std::string name): name(name), HitPts(100), EnergyPts(100), AttackDmg(30){
     std::cout << "ClapTrap " << name << " was created" << std::endl;
 }
 
