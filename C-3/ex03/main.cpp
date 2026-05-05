@@ -11,13 +11,14 @@ int main(){
     d.takeDamage(1000);
     d.beRepaired(3);
 
+    std::cout << std::endl;
     FragTrap c("Francisco");
     c.attack("sho vitor");
     c.beRepaired(1);
     c.takeDamage(1000);
     c.attack("carolina");
     c.beRepaired(5);
-
+    std::cout << std::endl;
     ScavTrap b("robot manel");
     b.attack("orlando");
     b.guardGate();
@@ -26,6 +27,7 @@ int main(){
     b.attack("ola");
     b.attack("maria");
     
+    std::cout << std::endl;
     ClapTrap a("manel");
     a.attack("zé");
     a.takeDamage(10);
