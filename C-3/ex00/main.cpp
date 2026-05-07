@@ -3,7 +3,7 @@
 int main(){
     ClapTrap a("manel");
     a.attack("zé");
-    a.takeDamage(10);
+    a.takeDamage(1);
     a.attack("zézoca");
     a.beRepaired(2);
     a.attack("zé miguel");
