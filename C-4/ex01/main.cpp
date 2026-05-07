@@ -21,9 +21,9 @@ int main()
             std::cout << "im a " << animals[i]->getType() << " and i make: ";
             animals[i]->makeSound();
             std::cout << std::endl;
-            /*std::cout << "I´m thinking about: " << std::endl;
+/*             std::cout << "I´m thinking about: " << std::endl;
             for (int j = 0; j < 100; j++)
-                std::cout << animals[i]->getIdeas()[j] << std::endl;*/
+                std::cout << animals[i]->getIdeas()[j] << std::endl; */
         }
         else{
             animals[i] = new Cat();
@@ -32,9 +32,9 @@ int main()
                         std::cout << "im a " << animals[i]->getType() << " and i make: ";
             animals[i]->makeSound();
             std::cout << std::endl;
-            /*std::cout << "I´m thinking about: " << std::endl;
+/*             std::cout << "I´m thinking about: " << std::endl;
             for (int j = 0; j < 100; j++)
-                std::cout << animals[i]->getIdeas()[j] << std::endl;*/
+                std::cout << animals[i]->getIdeas()[j] << std::endl; */
         }
     }
     for (int i = 0; i < 10; i++)

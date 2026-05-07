@@ -30,7 +30,7 @@ std::string Dog::getType()const{
     return type;
 }
 
-void    Dog::makeSound()const{
+void    Dog::makeSound(){
     std::cout << "Ãoãoãoãoãoãoãoão" << std::endl;
 }
 

@@ -23,7 +23,7 @@ std::string Animal::getType()const{
     return type;
 }
 
-void    Animal::makeSound()const{
+void    Animal::makeSound(){
     std::cout << "***Animal sounds***" << std::endl;
 }
 

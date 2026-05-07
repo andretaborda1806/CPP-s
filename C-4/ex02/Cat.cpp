@@ -31,7 +31,7 @@ std::string Cat::getType()const{
     return type;
 }
 
-void    Cat::makeSound()const{
+void    Cat::makeSound(){
     std::cout << "MiauMiauMiau" << std::endl;
 }
 

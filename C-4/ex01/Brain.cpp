@@ -4,7 +4,8 @@ Brain::Brain(){
     std::cout << "Brain default construtor callled" << std::endl;
 }
 
-Brain::Brain(const Brain &copy): ideas(copy.ideas){
+Brain::Brain(const Brain &copy){
+    *this = copy;
     std::cout << "Brain copy constructor called" << std::endl;
 }
 

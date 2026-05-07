@@ -1,6 +1,6 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(){
+DiamondTrap::DiamondTrap(): ClapTrap(){
     std::cout << "DiamondTrap deafult constructor called" << std::endl;
     HitPts = 100;
     EnergyPts = 50;
