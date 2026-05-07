@@ -88,9 +88,15 @@ void Character::equip(AMateria *m){
 
 void Character::unequip(int idx){
     if (idx < 0 || idx >= 4)
+    {
+        std::cout << "Drop what?" << std::endl;
         return;
+    }
     if (!_inventory[idx])
+    {
+        std::cout << this->getName() << "'s pocket is already empty" << std::endl;
         return;
+    }
     for (int i = 0; i < 100; ++i){
         if (!_onThefloor[i]){
             _onThefloor[i] = _inventory[idx];
