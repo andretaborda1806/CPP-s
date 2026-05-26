@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: antabord <antabord@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/26 12:54:33 by antabord          #+#    #+#             */
+/*   Updated: 2026/05/26 15:34:13 by antabord         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(): _name(" "), _grade(1){}
@@ -11,7 +23,8 @@ Bureaucrat::Bureaucrat(std::string name, int grade):_name(name), _grade(1){
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy){
-    *this = copy;
+    if (this != &copy)
+        *this = copy;
 }
 
 Bureaucrat::~Bureaucrat(){}
@@ -31,8 +44,9 @@ const std::string   Bureaucrat::getName() const {
     return _name;
 }
 
-int     Bureaucrat::getGrade()const{
+const int     Bureaucrat::getGrade()const{
     return _grade;
+    
 }
 
 void    Bureaucrat::incrementGrade(){
@@ -47,6 +61,10 @@ void    Bureaucrat::decrementGrade(){
         throw GradeTooHighException();
 }
 
+void    Bureaucrat::signForm(Form &form){
+    form.beSigned(*this);
+}
+
 const char* Bureaucrat::GradeTooHighException::what() const throw(){
 	return ("Grade is too high.");
 }
@@ -59,3 +77,4 @@ std::ostream &operator<<( std::ostream &out, const Bureaucrat &bureaucrat ){
 	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return (out);
 }
+
