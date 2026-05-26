@@ -6,7 +6,7 @@
 /*   By: antabord <antabord@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 12:53:59 by antabord          #+#    #+#             */
-/*   Updated: 2026/05/26 15:38:51 by antabord         ###   ########.fr       */
+/*   Updated: 2026/05/26 16:39:49 by antabord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 Form::Form(): _name(""), _signed(false), _gradeSign(1), _gradeExec(1){}
 
-Form::Form(const std::string name, const int gradeSign, const int gradeExec): _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec), _signed(false){
-    if (gradeSign > 150 || gradeExec > 150)
+Form::Form(const std::string name, const int gradeSign, const int gradeExec): _name(name),  _signed(false), _gradeSign(gradeSign), _gradeExec(gradeExec){
+    if (_gradeSign > 150 || _gradeExec > 150)
         throw GardeTooLowExeption();
-    if (gradeExec < 1 || gradeExec < 1)
+    if (_gradeSign < 1 || _gradeExec < 1)
         throw GardeTooHighExeption();
 }
 
 Form::Form(const Form &copy): _name(copy._name), _signed(false), _gradeSign(copy._gradeSign), _gradeExec(copy._gradeExec){
     if (copy.getSignGrade() > 150 || copy.getExecGrade() > 150)
         throw GardeTooLowExeption();
-    if (copy.getSignGrade() < 0 || copy.getExecGrade() < 0)
+    if (copy.getSignGrade() < 1 || copy.getExecGrade() < 1)
         throw GardeTooHighExeption();
 }
 
@@ -37,45 +37,48 @@ Form    &Form::operator=(Form const &copy){
 
 Form::~Form(){}
 
-const std::string   Form::getName()const{
+std::string   Form::getName()const{
     return (this->_name);
 }
 
-const int   Form::getSignGrade()const{
+int   Form::getSignGrade()const{
     return (this->_gradeSign);
 }
 
-const int   Form::getExecGrade()const{
+int   Form::getExecGrade()const{
     return (this->_gradeExec);
 }
 
-const std::string Form::getSignStatus()const{
-    switch (this->_signed)
-    {
-    case true:
+std::string Form::getSignStatus()const{
+    if (this->_signed)
         return ("true");
-    default:
+    else
         return ("false");
-    }
 }
 
 const char* Form::GardeTooHighExeption::what() const throw(){
-    return ("Grade is too high");
+    return ("Form grade is too high");
 }
 
 const char* Form::GardeTooLowExeption::what() const throw(){
-    return ("Grade is too low");
+    return ("Form grade is too low");
 }
 
-void    Form::beSigned(Bureaucrat b){
-    if (b.getGrade() < this->getSignGrade()){
+const char* Form::FormWasAlreadySigned::what() const throw(){
+    return ("This form was already signed");
+}
+
+void    Form::beSigned(Bureaucrat &b){
+    if (!this->_signed && (b.getGrade() < this->getSignGrade())){
         this->_signed = true;
         std::cout << b.getName() << " signed form " << this->getName() << "." <<std::endl;
     }
-    if (b.getGrade() > this->getSignGrade()){
+    if (!this->_signed && b.getGrade() > this->getSignGrade()){
         std::cout << b.getName() << " couldn't sign " << this->getName() << " beacause ";
         throw GardeTooLowExeption();
     }
+    if (this->_signed)
+        throw FormWasAlreadySigned();
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &form){

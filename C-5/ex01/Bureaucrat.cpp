@@ -6,7 +6,7 @@
 /*   By: antabord <antabord@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 12:54:33 by antabord          #+#    #+#             */
-/*   Updated: 2026/05/26 15:34:13 by antabord         ###   ########.fr       */
+/*   Updated: 2026/05/26 16:15:36 by antabord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ const std::string   Bureaucrat::getName() const {
     return _name;
 }
 
-const int     Bureaucrat::getGrade()const{
+int     Bureaucrat::getGrade()const{
     return _grade;
     
 }
@@ -66,11 +66,11 @@ void    Bureaucrat::signForm(Form &form){
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw(){
-	return ("Grade is too high.");
+	return ("Buru grade is too high.");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw(){
-	return ("Grade is too low.");
+	return ("Buru grade is too low.");
 }
 
 std::ostream &operator<<( std::ostream &out, const Bureaucrat &bureaucrat ){

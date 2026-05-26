@@ -20,7 +20,7 @@ class Bureaucrat{
             virtual const char* what() const throw();
         };
         const std::string   getName() const;
-        const int           getGrade() const;
+        int           getGrade() const;
         void                incrementGrade();
         void                decrementGrade();
         void                signForm(Form &form);

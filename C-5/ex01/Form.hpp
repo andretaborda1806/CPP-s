@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <exception>
-#include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class Form{
     private:
         const std::string _name;
@@ -17,18 +17,23 @@ class Form{
         Form(const Form &copy);
         ~Form();
         Form    &operator=(Form const &copy);
-        const std::string getName() const;
-        const std::string getSignStatus() const;
-        const int   getSignGrade() const;
-        const int   getExecGrade() const;
+        std::string getName() const;
+        std::string getSignStatus() const;
+        int   getSignGrade() const;
+        int   getExecGrade() const;
         class GardeTooHighExeption: public std::exception{
             virtual const char* what() const throw();
         };
         class GardeTooLowExeption: public std::exception{
             virtual const char* what() const throw();
         };
-        void    beSigned(Bureaucrat b);
+        class FormWasAlreadySigned: public std::exception{
+            virtual const char* what() const throw();
+        };
+        void    beSigned(Bureaucrat &b);
 };
+
+#include "Bureaucrat.hpp"
 
 std::ostream &operator<<(std::ostream &out, const Form &form);
 
