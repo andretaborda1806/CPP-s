@@ -6,7 +6,7 @@
 /*   By: antabord <antabord@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 12:53:59 by antabord          #+#    #+#             */
-/*   Updated: 2026/05/26 16:39:49 by antabord         ###   ########.fr       */
+/*   Updated: 2026/05/27 10:57:25 by antabord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,17 @@ const char* Form::FormWasAlreadySigned::what() const throw(){
 }
 
 void    Form::beSigned(Bureaucrat &b){
-    if (!this->_signed && (b.getGrade() < this->getSignGrade())){
-        this->_signed = true;
-        std::cout << b.getName() << " signed form " << this->getName() << "." <<std::endl;
+    if (!this->_signed){
+        if (b.getGrade() < this->getSignGrade()){
+            this->_signed = true;
+            std::cout << b.getName() << " signed form " << this->getName() << "." <<std::endl;
+        }
+        else{            
+            std::cout << b.getName() << " couldn't sign " << this->getName() << " beacause ";
+            throw Bureaucrat::GradeTooLowException();
+        }
     }
-    if (!this->_signed && b.getGrade() > this->getSignGrade()){
-        std::cout << b.getName() << " couldn't sign " << this->getName() << " beacause ";
-        throw GardeTooLowExeption();
-    }
-    if (this->_signed)
+    else
         throw FormWasAlreadySigned();
 }
 
