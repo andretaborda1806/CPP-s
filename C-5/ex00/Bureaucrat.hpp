@@ -12,9 +12,8 @@ class Bureaucrat{
         ~Bureaucrat();
         Bureaucrat          &operator=(Bureaucrat const &copy);
         class GradeTooHighException: public std::exception{
-                public:
                 virtual const char* what() const throw();
-            };
+        };
         class GradeTooLowException: public std::exception{
             virtual const char* what() const throw();
         };
