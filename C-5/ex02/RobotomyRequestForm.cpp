@@ -16,15 +16,11 @@ RobotomyRequestForm::RobotomyRequestForm(): AForm("RobotomyRequestForm", 72, 45)
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target): AForm("RobotomyRequestForm", 72, 45), _target(target){}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy){
-    *this = copy;
-}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy): AForm("RobotomyRequestForm", copy.getSignGrade(), copy.getExecGrade()){}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &copy){
-    if (this != &copy){
-        AForm::operator=(copy);
+    if (this != &copy)
         _target = copy._target;
-    }
     return *this;
 }
 
@@ -38,6 +34,7 @@ void    RobotomyRequestForm::execute(const Bureaucrat &executor)const{
         throw AForm::InvalidSignGrade();
     if (getExecGrade() != 45)
         throw AForm::InvalidExecGrade();
+    std::cout << executor.getName() << " executed " << this->getName() << std::endl;
     if (!(std::rand() % 2))
         std::cout << _target << " has been robotomized" << std::endl;
     else

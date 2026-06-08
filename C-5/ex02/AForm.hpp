@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <exception>
+#include <memory>
+#include <cstdlib>
+#include <ctime>
 
 class Bureaucrat;
 
@@ -16,9 +19,9 @@ class AForm{
         AForm();
         AForm(const std::string name, const int gradeSign, const int gradeExec);
         AForm(const AForm &copy);
-        ~AForm();
+        virtual ~AForm();
         AForm           &operator=(AForm const &copy);
-        std::string     getName() const;
+        const std::string &getName() const;
         bool            getSignStatus() const;
         int             getSignGrade() const;
         int             getExecGrade() const;

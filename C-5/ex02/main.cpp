@@ -3,9 +3,11 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include <memory>
 
 
 int main(void){
+    std::srand(std::time(NULL)); 
 /*     std::cout << "-------------Test1: Too high------------------" << std::endl;
     try{
         Bureaucrat a("Ze Maria", -1);
@@ -42,56 +44,58 @@ int main(void){
         std::cout << "Exeption: " << e.what() << std::endl;
     } */
 
-    std::cout << std::endl <<"--------------------------Test1: Not enough to sign---------------------" << std::endl;
+    std::cout << std::endl <<"--------------------------Test1: Shruberry OK---------------------" << std::endl;
     try{
         Bureaucrat a("Ze Manel", 10);
-        ShrubberyCreationForm b("Zezoca");
-        a.signAForm(b);
-        std::cout << b << std::endl;
+        std::auto_ptr<AForm> b(new ShrubberyCreationForm("arvore"));
+        a.signForm(*b);
+        a.executeForm(*b);
+        std::cout << *b << std::endl;
     }
     catch(std::exception &e){
-        std::cout << e.what() << std::endl; 
+        std::cout << e.what() << std::endl;
     }
-        std::cout << std::endl <<"--------------------------Test2: Buru too low for form---------------------" << std::endl;
+        std::cout << std::endl <<"--------------------------Test2: Roboto OK---------------------" << std::endl;
     try{
-        Bureaucrat c("Ze Maria", 151);
-        AForm d("ola", 1, 40);
-        c.signForm(d);
-        std::cout << c << std::endl;
+        Bureaucrat c("Ze Maria", 10);
+        std::auto_ptr<AForm> b(new RobotomyRequestForm("robot"));
+        c.signForm(*b);
+        c.executeForm(*b);
+        std::cout <<*b << std::endl;
     }
     catch(std::exception &e){
         std::cout << e.what() << std::endl; 
     }
-        std::cout << std::endl <<"--------------------------Test3: Form already signed---------------------" << std::endl;
-    try{
-        Bureaucrat f("Ze Maria", 10);
-        AForm g("ola", 11, 40);
-        f.signForm(g);
-        std::cout << f << std::endl;
-        f.signForm(g);
-    }
-    catch(std::exception &e){
-        std::cout << e.what() << std::endl; 
-    }
-    std::cout << std::endl <<"--------------------------Test4: Form too low---------------------" << std::endl;
+        std::cout << std::endl <<"--------------------------Test3: President OK---------------------" << std::endl;
     try{
         Bureaucrat f("Ze Maria", 10);
-        AForm g("ola", 151, 40);
-        f.signForm(g);
-        std::cout << f << std::endl;
-        f.signForm(g);
+        std::auto_ptr<AForm> b(new PresidentialPardonForm("presidential"));
+        f.signForm(*b);
+        f.executeForm(*b);
+        std::cout << *b << std::endl;
     }
     catch(std::exception &e){
         std::cout << e.what() << std::endl; 
     }
-    std::cout << std::endl;
-        std::cout << std::endl <<"--------------------------Test4: Form too high---------------------" << std::endl;
+        std::cout << std::endl <<"--------------------------Test4: Shruberry not enough---------------------" << std::endl;
+    try{
+        Bureaucrat a("Ze Manel", 150);
+        std::auto_ptr<AForm> b(new ShrubberyCreationForm("arvore"));
+        a.signForm(*b);
+        a.executeForm(*b);
+        std::cout << *b << std::endl;
+    }
+    catch(std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
+            std::cout << std::endl <<"--------------------------Test4: President alreadysigned---------------------" << std::endl;
     try{
         Bureaucrat f("Ze Maria", 10);
-        AForm g("ola", 0, 40);
-        f.signForm(g);
-        std::cout << f << std::endl;
-        f.signForm(g);
+        std::auto_ptr<AForm> b(new PresidentialPardonForm("presidential"));
+        f.signForm(*b);
+        f.executeForm(*b);
+        f.signForm(*b);
+        std::cout << *b << std::endl;
     }
     catch(std::exception &e){
         std::cout << e.what() << std::endl; 

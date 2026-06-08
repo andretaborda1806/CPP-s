@@ -16,15 +16,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(): AForm("ShruberryCreationForm", 1
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target): AForm("ShruberryCreationForm", 145, 137), _target(target){}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy){
-    *this = copy;
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy): AForm("RobotomyRequestForm", copy.getSignGrade(), copy.getExecGrade()){}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &copy){
-    if (this != &copy){
-        AForm::operator=(copy);
+    if (this != &copy)
         _target = copy._target;
-    }
     return *this;
 }
 
@@ -38,6 +34,7 @@ void    ShrubberyCreationForm::execute(const Bureaucrat &executor)const{
         throw AForm::InvalidSignGrade();
     if (getExecGrade() != 137)
         throw AForm::InvalidExecGrade();
+    std::cout << executor.getName() << " executed " << this->getName() << std::endl;
     std::string outname = (std::string(_target) + "_shrubbery");
     std::ofstream outfile(outname.c_str());
     if (!outfile.is_open())

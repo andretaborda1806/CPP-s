@@ -19,7 +19,7 @@ class Bureaucrat{
         class GradeTooLowException: public std::exception{
             virtual const char* what() const throw();
         };
-        const std::string   getName() const;
+        const std::string   &getName() const;
         int                 getGrade() const;
         void                incrementGrade();
         void                decrementGrade();

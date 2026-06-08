@@ -39,7 +39,7 @@ class Fixed {
         int     getFixedValue(void) const;
         void    setFixedValue(const int raw);
         float   toFloat( void ) const;
-        int     toInt( void ) const;
+        int     ToInt( void ) const;
 
         /*static member*/
         static const Fixed &min(const Fixed &a, const Fixed &b);

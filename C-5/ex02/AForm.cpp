@@ -37,7 +37,7 @@ AForm    &AForm::operator=(AForm const &copy){
 
 AForm::~AForm(){}
 
-std::string   AForm::getName()const{
+const std::string   &AForm::getName()const{
     return (this->_name);
 }
 
@@ -83,7 +83,7 @@ void    AForm::beSigned(Bureaucrat &b){
             this->_signed = true;
             std::cout << b.getName() << " signed form " << this->getName() << "." <<std::endl;
         }
-        else{            
+        else{
             std::cout << b.getName() << " couldn't sign " << this->getName() << " beacause ";
             throw Bureaucrat::GradeTooLowException();
         }
@@ -91,6 +91,7 @@ void    AForm::beSigned(Bureaucrat &b){
     else
         throw AFormWasAlreadySigned();
 }
+
 
 std::ostream &operator<<(std::ostream &out, const AForm &AForm){
     out << AForm.getName() << ", grade to sign " << AForm.getSignGrade() << ", grade to execute " << AForm.getExecGrade() << " and its signed status is " << AForm.getSignStatus() << ".";

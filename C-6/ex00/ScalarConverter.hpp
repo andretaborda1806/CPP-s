@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <climits>
 #include <cfloat>
+#include <sstream>
 
 class ScalarConverter{
     private:
@@ -16,10 +17,11 @@ class ScalarConverter{
         ~ScalarConverter();
         ScalarConverter &operator=(ScalarConverter const &copy);
 
-        static bool     ToInt(const std::string &value);
-        static bool     ToFloat(const std::string &value);
-        static bool     ToDouble(const std::string &value);
-        static bool     ToPseudo(const std::string &value);
+        static bool     IsChar(const std::string &value);
+        static bool     IsInt(const std::string &value);
+        static bool     IsFloat(const std::string &value);
+        static bool     IsDouble(const std::string &value);
+        static bool     IsPseudo(const std::string &value);
     public:
         static void     convert(const std::string &literal);
 };

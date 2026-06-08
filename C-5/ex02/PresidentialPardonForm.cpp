@@ -12,9 +12,9 @@
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(): AForm("ShruberryCreationForm", 25, 5), _target("default"){}
+PresidentialPardonForm::PresidentialPardonForm(): AForm("PresidentialPardonForm", 25, 5), _target("default"){}
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target): AForm("ShruberryCreationForm", 25, 5),_target(target){}
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target): AForm("PresidentialPardonForm", 25, 5),_target(target){}
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &copy){
     if (this != &copy)
@@ -24,7 +24,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 PresidentialPardonForm::~PresidentialPardonForm(){}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy){
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy):AForm("PresidentialPardonForm", copy.getSignGrade(), copy.getExecGrade()){
     *this = copy;
 }
 
@@ -35,5 +35,6 @@ void    PresidentialPardonForm::execute(const Bureaucrat &executor)const{
         throw AForm::InvalidSignGrade();
     if (getExecGrade() != 5)
         throw AForm::InvalidExecGrade();
+    std::cout << executor.getName() << " executed " << this->getName() << std::endl;
     std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

@@ -137,7 +137,7 @@ Fixed &Fixed::max(Fixed &a, Fixed &b){
 
 /*--------------------Member functions--------------------*/
 
-int Fixed::toInt(void) const {
+int Fixed::ToInt(void) const {
     return _fixedValue >> _fractBits;
 }
 
