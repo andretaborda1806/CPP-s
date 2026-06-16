@@ -1,7 +1,8 @@
-#ifndef tEMEPLATE_HPP
-#define TEMEPLATE_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
 
 #include <iostream>
+#include <string>
 
 template <typename T>
 void    iter(T *arr, int len, void (*func)(T &)){
@@ -10,13 +11,13 @@ void    iter(T *arr, int len, void (*func)(T &)){
 }
 
 template <typename T>
-void    print(T a){
+void    print(const T &a){
     std::cout << a << std::endl;
 }
 
 
 template <typename T>
-void    increment(T a){
+void    increment(T &a){
     std::cout << a << std::endl;
 }
 

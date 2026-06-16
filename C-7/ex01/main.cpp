@@ -1,6 +1,7 @@
-#include "Temeplate.hpp"
+#include "Iter.hpp"
 
 int main(void){
     int arr[5] = {1, 5, 2, -2, 4};
-    iter(arr, 5, &print())
+
+    ::iter(arr, 5, print<int>);
 }
