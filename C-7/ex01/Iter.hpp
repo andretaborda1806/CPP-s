@@ -4,21 +4,27 @@
 #include <iostream>
 #include <string>
 
-template <typename T>
-void    iter(T *arr, int len, void (*func)(T &)){
+template <typename T, typename U>
+void    iter(T *arr, const int len, U func){
+    if (!arr)
+        return;
     for (int i = 0; i < len; i++)
-        func(&arr[i]);
+        func(arr[i]);
 }
 
 template <typename T>
-void    print(const T &a){
+void    print(T &a){
     std::cout << a << std::endl;
 }
 
+void    uppercase(std::string &str){
+    for (int i = 0; i < static_cast<int>(str.length()); i++)
+        str[i] = static_cast<char>(std::toupper(static_cast<unsigned char>(str[i])));
+}
 
 template <typename T>
 void    increment(T &a){
-    std::cout << a << std::endl;
+    a+=5;
 }
 
 #endif
