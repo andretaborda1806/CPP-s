@@ -68,7 +68,7 @@ int main(void){
     }
         std::cout << std::endl <<"--------------------------Test3: President OK---------------------" << std::endl;
     try{
-        Bureaucrat f("Ze Maria", 10);
+        Bureaucrat f("Ze Maria", 2);
         std::auto_ptr<AForm> b(new PresidentialPardonForm("presidential"));
         f.signForm(*b);
         f.executeForm(*b);
@@ -90,7 +90,7 @@ int main(void){
     }
             std::cout << std::endl <<"--------------------------Test4: President alreadysigned---------------------" << std::endl;
     try{
-        Bureaucrat f("Ze Maria", 10);
+        Bureaucrat f("Ze Maria", 2);
         std::auto_ptr<AForm> b(new PresidentialPardonForm("presidential"));
         f.signForm(*b);
         f.executeForm(*b);

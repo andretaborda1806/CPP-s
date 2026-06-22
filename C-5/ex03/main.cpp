@@ -83,7 +83,7 @@ int main(void){
     }
         std::cout << std::endl <<"--------------------------Test4: Form aleady signed---------------------" << std::endl;
     try{
-        Bureaucrat a("Ze Manel", 150);
+        Bureaucrat a("Ze Manel", 139);
         Intern rando;
         std::auto_ptr<AForm> b(rando.makeForm(std::string("shrubbery creation"), "arvore"));
         a.signForm(*b);
