@@ -9,13 +9,14 @@ template <typename T>
 class Array{
     private:
         T *_array;
-        int _len;
+        unsigned int _len;
     public:
 
         class InvalidSize: public std::exception{
-            virtual const char * what() const throw(){
-                return ("Invalid size!");
-            }
+            public:
+                virtual const char * what() const throw(){
+                    return ("Invalid size!");
+                }
         };
 
         Array(): _array(NULL), _len(0){}
@@ -26,11 +27,11 @@ class Array{
 
         Array(const Array &copy): _len(copy._len){
             this->_array = new T[this->_len];
-            for (int i = 0; i < _len; i++)
+            for (unsigned int i = 0; i < _len; i++)
                 this->_array[i] = copy._array[i];
         }
 
-        ~Array(){}
+        ~Array(){delete[] this->_array;}
 
         Array &operator=(const Array &copy){
             if (this != &copy){
@@ -40,7 +41,7 @@ class Array{
                     this->_array = NULL;
                 else{
                     this->array = new T[this->_len]();
-                    for (int i = 0; i < _len; i++){
+                    for (unsigned int i = 0; i < _len; i++){
                         _array[i] = copy._array[i];
                     }
                 }
@@ -49,13 +50,13 @@ class Array{
         }
 
         T   &operator[](int index){
-            if (index < 0 || index > _len)
+            if (index < 0 || (unsigned)index >= _len)
                 throw InvalidSize();
             return _array[index];
         }
 
         T   &operator[](int index)const{
-            if (index < 0 || index > _len)
+            if (index < 0 || (unsigned)index >= _len)
                 throw InvalidSize();
             return _array[index];
         }

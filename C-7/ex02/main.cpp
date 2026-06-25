@@ -9,6 +9,8 @@ int main(int, char**)
     for (int i = 0; i < MAX_VAL; i++)
     {
         const int value = rand();
+        (void)value;
+        numbers[i]
         numbers[i] = value;
         mirror[i] = value;
     }
@@ -46,6 +48,7 @@ int main(int, char**)
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
+        std::cout << numbers[i] << std::endl;
     }
     delete [] mirror;
     return 0;
