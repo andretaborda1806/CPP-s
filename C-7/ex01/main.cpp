@@ -46,5 +46,4 @@ int main(void){
     ::iter(c, 7, print<char>);
     std::cout << std::endl;
     return 0;
-
 }
