@@ -10,7 +10,6 @@ int main(int, char**)
     {
         const int value = rand();
         (void)value;
-        numbers[i]
         numbers[i] = value;
         mirror[i] = value;
     }
@@ -30,7 +29,7 @@ int main(int, char**)
     }
     try
     {
-        numbers[-2] = 0;
+        numbers[1] = 0;
     }
     catch(const std::exception& e)
     {
