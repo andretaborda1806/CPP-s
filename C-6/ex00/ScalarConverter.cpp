@@ -197,7 +197,7 @@
                 else
                     std::cout << f << "f" << std::endl;
                 std::cout << "Double: ";
-                if (f == static_cast<int>(f)){
+                   if (f == static_cast<int>(f)){
                     if (n < static_cast<double>(INT_MIN) || n > static_cast<double>(INT_MAX))
                         std::cout << std::scientific << n << std::endl;
                     else

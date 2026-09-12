@@ -31,7 +31,9 @@ class Array{
                 this->_array[i] = copy._array[i];
         }
 
-        ~Array(){delete[] this->_array;}
+        ~Array(){
+            delete[] this->_array;
+        }
 
         Array &operator=(const Array &copy){
             if (this != &copy){
