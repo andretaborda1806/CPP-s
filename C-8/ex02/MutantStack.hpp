@@ -9,7 +9,7 @@ class MutantStack: public std::stack<T>{
     public:
         typedef typename std::stack<T>::container_type::iterator iterator;
         MutantStack(): std::stack<T>(){};
-        MutantStack(const MutantStack &copy): std::stack<T>(){}
+        MutantStack(const MutantStack &copy): std::stack<T>(copy){}
         ~MutantStack(){};
         MutantStack &operator=(const MutantStack &copy){
             if (*this != copy){
